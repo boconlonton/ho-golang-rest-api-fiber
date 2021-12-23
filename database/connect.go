@@ -3,6 +3,7 @@ package database
 import (
 	"fmt"
 	"github.com/boconlonton/ho-golang-rest-api-fiber/config"
+	"github.com/boconlonton/ho-golang-rest-api-fiber/internal/model"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"log"
@@ -40,4 +41,8 @@ func ConnectDB() {
 	}
 
 	fmt.Println("Connection Opened to Database")
+
+	// Migrate the database
+	DB.AutoMigrate(&model.Note{})
+	fmt.Println("Database Migrated")
 }
